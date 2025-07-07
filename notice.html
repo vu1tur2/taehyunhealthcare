@@ -86,7 +86,7 @@
                 <a href="partnership.html">B2B</a>
             </li>
             <li>
-                <a href="notice.html">COMMUNITY</a>
+                <a href="#">COMMUNITY</a>
                 <ul class="submenu">
                     <li><a href="talk.html">QnA</a></li>
                     <li><a href="memo.html">자료실</a></li>
@@ -100,7 +100,7 @@
     <!-- content 시작 -->
     <div class="n_contents">
       <h2>공지사항</h2>
-      <div id="write-btn" style="text-align:right; margin-bottom: 20px;">
+      <div id="write-btn">
         <button id="go-write" style="
             background-color: #aaa;
             color: white;
@@ -112,6 +112,9 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             cursor: pointer;
             transition: background-color 0.3s ease;
+            position: fixed;
+            top: 290px;
+            right: 85px;
         ">글쓰기</button>
       </div>
       <table class="board">
@@ -141,7 +144,7 @@
     <div id="contents">
         <div class="notice-card">
         <div class="notice-card-header">
-            <h3>공지사항</h3>
+            <h3><a href="notice.html">공지사항</a></h3>
             <button class="notice-more-btn" onclick="location.href='notice.html'">›</button>
         </div>
         <ul class="notice-list">
@@ -162,6 +165,7 @@
     </div>
     <!-- 콘텐츠 끝 -->
 
+    <!-- 공지사항 리스트 출력 및 삭제 + 페이지 처리 스크립트 -->
     <script>
     document.addEventListener("DOMContentLoaded", function() {
       const isAdmin = localStorage.getItem('isAdmin') === 'true';
@@ -261,25 +265,14 @@
 
       renderNotices(1);
     });
-
     </script>
 
+   <!-- 공지사항 리스트 자동 삽입 스크립트 -->
     <script>
-     // ✅ 페이지 돌아올 때 검색창 비우기
-        window.addEventListener('pageshow', function (event) {
-        if (event.persisted) {
-        const searchInput = document.querySelector('input[name="query"]');
-        if (searchInput) searchInput.value = '';
-       }
-      });
-    </script>
-
-      <script>
     document.addEventListener("DOMContentLoaded", function () {
     const noticeList = document.querySelector(".notice-list");
     let noticePosts = JSON.parse(localStorage.getItem('noticePosts') || '[]');
 
-    // 날짜 + id 기준 최신 정렬
     noticePosts.sort((a, b) => {
         const dateCompare = new Date(b.date) - new Date(a.date);
         if (dateCompare !== 0) return dateCompare;
@@ -290,10 +283,10 @@
 
     noticeList.innerHTML = "";
 
-    latestNotices.forEach(item => {
+    latestNotices.forEach((item, index) => {
         const li = document.createElement("li");
         li.innerHTML = `
-        <a href="notice_view.html?id=${item.id}">
+        <a href="notice_view.html?id=${item.id}" style="${index === 0 ? 'border-top: 1px dotted #fff;' : ''}">
             <span class="notice-title">${item.title}</span>
             <span class="notice-date">${item.date}</span>
         </a>
