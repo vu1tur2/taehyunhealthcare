@@ -105,7 +105,7 @@
     latestNotices.forEach((item, index) => {
         const li = document.createElement("li");
         li.innerHTML = `
-        <a href="notice_view.html?id=${item.id}" style="${index === 0 ? 'border-top: 1px dotted #fff;' : ''}">
+        <a href="notice_view.html?id=${item.id}" style="${index === 0 ? 'border-top: 1px dotted #000;' : ''}">
             <span class="notice-title">${item.title}</span>
             <span class="notice-date">${item.date}</span>
         </a>
