@@ -159,7 +159,9 @@
                     상호명: 태현헬스케어 본사: 광주광역시 동구 천변우로 453 (코밀빌딩) 4층 413호 <br>
                     사업자등록번호: 139-86-02746 <span class="n">대표번호: 062-233-6015</span>
                     이메일: thhealthcare@naver.com <br>
-                    평일: 09:00 ~ 17:30 / 점심시간: 12:00 ~ 13:00 / 휴무일" 주말 및 공휴일
+                    평일: 09:00 ~ 17:30 / 점심시간: 12:00 ~ 13:00 / 휴무일: 주말 및 공휴일 <br>
+                    <span id="copy"><a href="#">개인정보처리방침</a></span>
+                    ⓒ Taehyun Healthcare. All Rights Reserved.
                 </p>
             </div>
         </div>
@@ -192,6 +194,7 @@
     }
     ];
     </script>
+    
 
     <!-- 글 리스트 출력 및 삭제 스크립트 + 페이지 처리 스크립트-->
     <script>
@@ -226,15 +229,16 @@
         if (groupStart > totalPages) groupStart = Math.max(1, totalPages - pagesToShow + 1);
 
         const startIdx = (currentPage - 1) * pageSize;
-        const subset = memos.slice(startIdx, startIdx + pageSize);
+        const subset = memos.slice(startIdx, startIdx + pageSize); 
 
         tbody.innerHTML = '';
 
         // ✅ 고정글 먼저 출력
         fixedMemos.forEach(item => {
         const tr = document.createElement('tr');
+        tr.classList.add('fixed-row'); // optional: 고정글에 스타일 입히기
         tr.innerHTML = `
-            <td></td>
+            <td class="pin-icon" title="고정된 글입니다">📌</td>
             <td><a href="${item.link}">${item.title}</a></td>
             <td>${item.date}</td>
             <td>${item.author}</td>
@@ -330,7 +334,7 @@
     latestNotices.forEach((item, index) => {
         const li = document.createElement("li");
         li.innerHTML = `
-        <a href="notice_view.html?id=${item.id}" style="${index === 0 ? 'border-top: 1px dotted #fff;' : ''}">
+        <a href="notice_view.html?id=${item.id}" style="${index === 0 ? 'border-top: 1px dotted #000;' : ''}">
             <span class="notice-title">${item.title}</span>
             <span class="notice-date">${item.date}</span>
         </a>
