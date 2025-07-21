@@ -239,6 +239,71 @@ nav {
   font-size: 13.5px;
 }
 
+#openModalBtn>a {
+  font-weight: bold;
+  padding-top: 10px;
+}
+
+body.modal-open {
+  overflow: hidden; /* 배경 스크롤 금지 */
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  /* 여기서 브라우저 스크롤바를 활성화 → 모달창 스크롤 */
+  overflow-y: auto;
+}
+.modal h2 {
+  padding: 10px;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 50px auto; /* 위아래 여백 */
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+
+  /* 여기서는 높이 제한 없이 자연스럽게 커짐 */
+  font-family: 'Pretendard', sans-serif;
+  position: relative;
+}
+
+.modal-body {
+  margin-top: 10px;
+  /* 스크롤 제거 → 스크롤은 modal 자체에 위임 */
+  overflow: visible;
+}
+
+.modal-body p {
+  font-size: 14px;
+  padding: 10px;
+}
+
+.close {
+  color: #aaa;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 22px;
+  z-index: 10;
+}
+
+.close:hover {
+  color: #000;
+}
+
 /* index.html CSS */
 
 #slide {
@@ -1004,21 +1069,28 @@ td.pin-icon {
   width: 1200px;
   position: relative;
 }
+
 .m_span a {
-  width: 85px;
-  background-color: #aaa;
+  display: inline-block;
+  background-color: #007bff;
   color: white;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
   border: none;
-  border-radius: 5px;
-  padding: 0 20px;
-  font-size: 16px;
-  font-weight: bold;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);   
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   position: absolute;
   top: 25px;
   right: 5px;
+  text-decoration: none;
+}
+
+.m_span a:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
 }
 
 /* talk_1.html CSS */
